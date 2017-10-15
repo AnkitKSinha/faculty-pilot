@@ -13,10 +13,10 @@
     "hbs": "~4.0.0",
     "morgan": "~1.7.0",
     "serve-favicon": "~2.3.0",
-    "fs": "^0.0.1",
-    "cheerio" : "~1.0.0",
-    "request" : "~2.81.0",
-    "papaparse" : "~4.3.6"
+    "fs": "latest",
+    "cheerio" : "latest",
+    "request" : "latest",
+    "papaparse" : "latest"
   },
   "description": "PESIT BSC Department faculty explorer",
   "main": "app.js",
