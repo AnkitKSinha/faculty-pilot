@@ -11,10 +11,11 @@ hbs.registerHelper('parseInt', function(str) {
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
+	scholar.startScrape();
 	fs.readFile("lib/scrapedData.json", (err, data)=>{
 		data = JSON.parse(data);
 		console.log(data);
-		res.render('index', { title: 'Express', faculty : data });
+		res.render('index', { title: 'Faculty | Scibase', faculty : data });
 	});
   
 });
