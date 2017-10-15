@@ -70,7 +70,8 @@
                     <th>H-index</th>
                     <th>i-10 score</th>
                     <th>Publications</th>
-                    <th>RGScore</th>
+                    <th data-dynatable-sorts="r">RGScore</th>
+                    <th style="display : none">r</th>
                     <th>Download</th>
                   </tr>
 
@@ -79,11 +80,12 @@
                     {{#each faculty}}
                       <tr>
 
-                        <td><a href="{{url}}">{{name}}</a></td>
+                        <td><a href="{{url}}" target="_blank">{{name}}</a></td>
                         <td>{{citations}}</td>
                         <td>{{#if hindex}}{{hindex}}{{else}}0{{/if}}</td>
                         <td>{{i10index}}</td>
                         <td>{{pubcount}}</td>
+                        <td><a href="{{rg_url}}" target="_blank" style="color : #0cb !important;">{{rg_score}}</a></td>
                         <td>{{rg_score}}</td>
                         <td>
                         	{{#if puburl}}
@@ -123,9 +125,10 @@
 					// console.log(el.innerHTML);
 					return Number(el.innerHTML) || 0;
 				},
-                'rgscore': function(el, record) {
-                    // console.log(el.innerHTML);
-                    return Number(el.innerHTML) || 0;
+                'r': function(el, record) {
+                    var t = el.innerHTML;
+
+                    return Number(t) || 0;
                 }
 			},
 			features:{
