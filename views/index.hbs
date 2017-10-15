@@ -1,0 +1,136 @@
+<header id="header">
+    <div class="navbar navbar-inverse" role="banner">
+        <div class="container">
+        	<div class="col-sm-12">
+	            <div class="pull-left col-sm-3">
+	            	<img src="images/pes.png" alt="logo" style="max-height: 100px;" class="img img-responsive">
+	            </div>
+	            <!-- <div class="navbar-header">
+	                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+	                    <span class="sr-only">Toggle navigation</span>
+	                    <span class="icon-bar"></span>
+	                    <span class="icon-bar"></span>
+	                    <span class="icon-bar"></span>
+	                </button>
+
+	            </div>
+	            <div class="collapse navbar-collapse">
+	                <ul class="nav navbar-nav navbar-right">
+	                    <li class="active"><a href="/">Home</a></li>
+	                </ul>
+	            </div> -->
+	            <!-- <div class="pull-right col-sm-3">
+	            	<img src="images/pes.png" class="img img-responsive" style="max-height: 150px;" alt="PESIT BSC">
+
+	            </div> -->
+	        </div>
+
+        </div>
+        </div>
+</header>
+
+<section id="home-slider">
+    <div class="container">
+        <div class="main-slider">
+            <div class="row text-center">
+                <div class="col-md-12">
+                    <div class="slide-text uk-margin-large uk-padding-medium">
+	                    <h1 style="font-weight: 300;">Faculty Explorer</h1>
+	                    <!-- <p>Welcome to PESITSouth Faculty Explorer.</p> -->
+                	</div>
+                </div>
+            </div>
+        </div>
+    </div>
+	<div class="row">
+    
+        <div class="col-md-6 col-md-offset-3  text-center uk-margin-large uk-margin-remove-top">
+           	<div>
+                <h2 class="post-title center">Select Department</h2>
+                <br>
+                <form method="POST" action="#">
+                	<select class="form-control" id="graphs">
+                        <option value="cse" selected>Computer Science and Engineering </option>
+                    </select>
+                </form>
+            </div>
+		</div>
+	</div>
+</section>
+
+<div class="row">
+	<div class="document col-sm-12">
+		<div class="container-fluid">
+			<div class="row uk-padding-large">
+			<table id="cse-faculty-table" class="table table-hover text-center">
+                <thead>
+                  <tr>
+                    <th>Name</th>
+                    <th>Citation</th>
+                    <th>H-index</th>
+                    <th>i-10 score</th>
+                    <th>Publications</th>
+                    <th>RGScore</th>
+                    <th>Download</th>
+                  </tr>
+
+                </thead>
+                <tbody>
+                    {{#each faculty}}
+                      <tr>
+
+                        <td><a href="{{url}}">{{name}}</a></td>
+                        <td>{{citations}}</td>
+                        <td>{{#if hindex}}{{hindex}}{{else}}0{{/if}}</td>
+                        <td>{{i10index}}</td>
+                        <td>{{pubcount}}</td>
+                        <td>{{rg_score}}</td>
+                        <td>
+                        	{{#if puburl}}
+                        		<a href="{{puburl}}" download><span class="fa fa-cloud-download"></span></a>
+                        	{{/if}}
+                        </td>
+                      </tr>
+
+                    {{/each}}
+                </tbody>
+
+            </table>
+            </div>
+		</div>
+	</div>
+</div>
+
+<script type="text/javascript">
+	$(document).ready(function(){
+		$('#cse-faculty-table').bind('dynatable:init', function(e, dynatable) {
+    dynatable.sorts.add('citation', -1);
+  }).dynatable({
+			readers: {
+				'citation': function(el, record) {
+					// console.log(el.innerHTML);
+					return Number(el.innerHTML) || 0;
+				},
+				'h-index': function(el, record) {
+					// console.log(el.innerHTML);
+					return Number(el.innerHTML) || 0;
+				},
+				'i-10Score': function(el, record) {
+					// console.log(el.innerHTML);
+					return Number(el.innerHTML) || 0;
+				},
+				'publications': function(el, record) {
+					// console.log(el.innerHTML);
+					return Number(el.innerHTML) || 0;
+				},
+                'rgscore': function(el, record) {
+                    // console.log(el.innerHTML);
+                    return Number(el.innerHTML) || 0;
+                }
+			},
+			features:{
+                pushState : false
+            }
+		});
+	});
+</script>
