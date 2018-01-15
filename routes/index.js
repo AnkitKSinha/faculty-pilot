@@ -2,7 +2,6 @@ var express = require('express');
 var router = express.Router();
 var fs = require("fs");
 var hbs = require('hbs');
-var scholar = require("../lib/scholarScraper");
 
 hbs.registerHelper('parseInt', function(str) {
     return Number(str);
